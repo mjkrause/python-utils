@@ -9,9 +9,15 @@ class TestStats(unittest.TestCase):
     def test_get_stdev_from_stdevs(self):
         means = [1, 2, 3]
         stdevs = [4, 5, 6]
-        expected = (2, 8.774964387392123)
+        expected = (2, 5.066228051190222)
         observed = Stats.get_mean_of_means_with_stdevs(means=means, stdevs=stdevs)
         self.assertEqual(expected, observed)
+
+    def test_get_stdev_from_stdevs_raise_value_error(self):
+        means = [1, 2, 3]
+        stdevs = [12, 11]
+        with self.assertRaises(ValueError):
+            Stats.get_mean_of_means_with_stdevs(means=means, stdevs=stdevs)
 
     def test_is_same_length(self):
         arr1 = [1, 2, 3]
